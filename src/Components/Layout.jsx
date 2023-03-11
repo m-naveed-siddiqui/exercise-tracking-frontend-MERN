@@ -1,4 +1,5 @@
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
+import { Outlet, NavLink } from 'react-router-dom';
 
 export default function Layout(Components) {
     return (
@@ -10,11 +11,11 @@ export default function Layout(Components) {
                         <div className="col-2">
                             <img src={logo} style={{ 'width': '55px' }} alt="logo" loading="eager" />
                         </div>
-                        <div className="col-8">
+                        {/* <div className="col-8">
                             <div className="container">
                                 <label className="welcome-label">Welcome <span>Naveed Siddiqui</span></label>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="row d-flex h-100">
@@ -22,10 +23,10 @@ export default function Layout(Components) {
                         <div className="col-2">
                             <div className="leftbar">
                                 <div className="list-group mt-3">
-                                    <a href="#" className="list-group-item list-group-item-action active">My Exercises</a>
-                                    <a href="./add.html" className="list-group-item list-group-item-action">Add Exercise</a>
-                                    <a href="#" className="list-group-item list-group-item-action">Profile</a>
-                                    <a href="#" className="list-group-item list-group-item-action">Logout</a>
+                                    <NavLink to="/" className="list-group-item list-group-item-action">My Exercises</NavLink>
+                                    <NavLink to="/exercise/add" className="list-group-item list-group-item-action">Add Exercise</NavLink>
+                                    <NavLink to="javascript:;" className="list-group-item list-group-item-action">Profile</NavLink>
+                                    <NavLink to="javascript:;" className="list-group-item list-group-item-action">Logout</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -33,6 +34,8 @@ export default function Layout(Components) {
                         <div className="col-8">
                             <div className="container wrapper">
                                 
+                                <Outlet/>
+                                {/* If without outlet, so accept children */}
                                 {Components.children}
 
                             </div>
@@ -46,12 +49,12 @@ export default function Layout(Components) {
                                 <p className="text-muted">Web Developer <span className="badge bg-primary">PRO</span></p>
                                 <div className="profile-detail">
                                     <div className="list-group">
-                                        <a className="list-group-item active">35 Times Exercise</a>
-                                        <a className="list-group-item">Run: 15 (Times)</a>
-                                        <a className="list-group-item">Bicycle Ride: 18 (Times)</a>
-                                        <a className="list-group-item">Swim: 2 (Times)</a>
-                                        <a className="list-group-item">Walk: 0 (Times)</a>
-                                        <a className="list-group-item">Hike: 0 (Times)</a>
+                                        <NavLink to="javascript:;" className="list-group-item active">35 Times Exercise</NavLink>
+                                        <NavLink to="javascript:;" className="list-group-item">Run: 15 (Times)</NavLink>
+                                        <NavLink to="javascript:;" className="list-group-item">Bicycle Ride: 18 (Times)</NavLink>
+                                        <NavLink to="javascript:;" className="list-group-item">Swim: 2 (Times)</NavLink>
+                                        <NavLink to="javascript:;" className="list-group-item">Walk: 0 (Times)</NavLink>
+                                        <NavLink to="javascript:;" className="list-group-item">Hike: 0 (Times)</NavLink>
                                     </div>
                                 </div>
                             </div>

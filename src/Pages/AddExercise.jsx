@@ -1,4 +1,3 @@
-import Layout from "../Components/Layout";
 import ExerciseCard from "../Components/ExerciseCard";
 
 export default function AddExercise() {

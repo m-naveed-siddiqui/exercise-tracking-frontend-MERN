@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Layout from '../../Components/Auth/LayoutAuth';
-import Register from './Register';
+// import Layout from '../../Components/Auth/LayoutAuth';
 import { useCookies } from "react-cookie";
 
 export default function Login() {
@@ -10,13 +9,13 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
-
     const handleLogin = (e) => {
         e.preventDefault();
         const data = {
             email,password
         }
-        fetch('http://10.241.72.232:3000/login', {
+        // fetch('http://10.241.72.232:3000/login', {
+        fetch('http://127.0.0.1:3000/login', {
             method:"POST",
             headers: {
                 "Content-Type": "application/json",
@@ -40,7 +39,7 @@ export default function Login() {
 
     return (
         
-        <Layout>
+        <>
             <form onSubmit={handleLogin}>
                 <p>Please login to your account</p>
 
@@ -68,6 +67,6 @@ export default function Login() {
                    <Link className="btn btn-outline-danger" to={'/register'}> Create new</Link>
                 </div>
             </form>
-        </Layout>
+        </>
     )
 }

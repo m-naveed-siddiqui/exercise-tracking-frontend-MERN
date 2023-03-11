@@ -1,4 +1,5 @@
 import logo from '../../assets/logo.png';
+import { Outlet } from 'react-router-dom';
 
 export default function LayoutAuth(Components) {
   return (
@@ -18,6 +19,8 @@ export default function LayoutAuth(Components) {
                                         <h4 className="mt-1 mb-5 pb-1">We motive the world strong</h4>
                                     </div>
 
+                                    <Outlet/>
+                                    {/* If without outlet, so accept children */}
                                     {Components.children}
     
                                 </div>

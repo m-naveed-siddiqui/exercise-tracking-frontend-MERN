@@ -1,4 +1,3 @@
-import Layout from "../Components/Layout";
 import ExerciseCard from "../Components/ExerciseCard";
 import { useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
@@ -23,7 +22,7 @@ export default function Exercises() {
     //     });
     // },[])
     return (
-        <Layout>
+        <>
             {/* <label className="welcome-label">Welcome <span>Naveed Siddiqui</span></label> */}
 
             <h5 className="mb-3">Here Is Your Exercise Summary</h5>
@@ -35,6 +34,6 @@ export default function Exercises() {
                     <ExerciseCard />
                 </div>
             </div>
-        </Layout>
+        </>
     )
 }
