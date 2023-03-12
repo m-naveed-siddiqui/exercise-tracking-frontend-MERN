@@ -2,6 +2,11 @@ import logo from '../assets/logo.png';
 import { Outlet, NavLink } from 'react-router-dom';
 
 export default function Layout(Components) {
+    const handleLogout = () => {
+        localStorage.clear('user');
+        location.reload();
+    };
+
     return (
         <>
             <section className="h-100" style={{ 'backgroundColor': '#eee' }}>
@@ -26,7 +31,7 @@ export default function Layout(Components) {
                                     <NavLink to="/" className="list-group-item list-group-item-action">My Exercises</NavLink>
                                     <NavLink to="/exercise/add" className="list-group-item list-group-item-action">Add Exercise</NavLink>
                                     <NavLink to="javascript:;" className="list-group-item list-group-item-action">Profile</NavLink>
-                                    <NavLink to="javascript:;" className="list-group-item list-group-item-action">Logout</NavLink>
+                                    <NavLink to="javascript:;" className="list-group-item list-group-item-action" onClick={handleLogout}>Logout</NavLink>
                                 </div>
                             </div>
                         </div>

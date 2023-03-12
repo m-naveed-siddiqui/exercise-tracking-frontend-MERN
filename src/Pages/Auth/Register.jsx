@@ -1,19 +1,23 @@
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+// import { useQuery } from 'react-query';
+import axios from 'axios';
 
 export default function Register() {
-    // const [fName, setFName] = useState('');
-    // const [lName, setLName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [dob, setDob] = useState('');
-    // const [gender, setGender] = useState('');
     const set_fname = useRef();
     const set_lName = useRef();
     const set_email = useRef();
     const set_password = useRef();
     const set_dob = useRef();
-    const set_gender = useRef();
+
+    const [errorMessage, setErrorMessage] = useState('');
+    const [gender, setGender] = useState('');
+    const onGenderChange = e => {
+        setGender(e.target.value);
+    };
+
+    // const { isLoading, error, data, isFetching, refetch } = useQuery("registerUser", () => {
+    // });
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -23,15 +27,29 @@ export default function Register() {
         const email = set_email.current.value;
         const password = set_password.current.value;
         const dob = set_dob.current.value;
-        const gender = set_gender.current.value;
         
-        const data = {firstname, lastname, email, password, dob, gender};
-        console.log(data);
-        // fetch('http://127.0.0.1:3000/register',{
+        // const data = {firstname, lastname, email, password, dob, gender};
+        // fetch('http://127.0.0.1:3000/register', {
+        //     headers: {"Content-Type": "application/json"},
         //     method:"POST",
         //     body: JSON.stringify(data),
-        // });
+        // })
+        // .then(response => {
+        //     // console.log(response.status, response.ok);
+        //     return response.json();
+        // })
+        // .then(result => console.log(result.message))
+        // .catch(error => console.error('Oops! '+error.message));
+
+        axios.post('http://127.0.0.1:3000/register', {
+            firstname, lastname, email, password, dob, gender
+        }).then(res => {
+            localStorage.setItem('user', res.data.token);
+            location.reload();
+        }).catch(error => setErrorMessage(error.message));
+        
     };
+    
     return (
         <>
             <form onSubmit={handleRegister}>
@@ -64,21 +82,24 @@ export default function Register() {
                     <label className="form-label" htmlFor="password">Password</label>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="date" id="dob" className="form-control" required ref={set_dob} />
+                    <input type="date" id="dob" className="form-control" ref={set_dob} />
                     <label className="form-label" htmlFor="dob">Date of Birth</label>
                 </div>
                 <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="">Gender</label>
                     <div className="btn-group form-control">
-                        <input type="radio" className="btn-check" name="gender" id="male" required ref={set_gender} />
+                        <input type="radio" className="btn-check" name="gender" id="male" value="male" onChange={onGenderChange} />
                         <label className="btn btn-secondary" htmlFor="male">Male</label>
 
-                        <input type="radio" className="btn-check" name="gender" id="female" ref={set_gender} />
+                        <input type="radio" className="btn-check" name="gender" id="female" value="female" onChange={onGenderChange} />
                         <label className="btn btn-secondary" htmlFor="female">Female</label>
 
-                        <input type="radio" className="btn-check" name="gender" id="other" ref={set_gender} />
+                        <input type="radio" className="btn-check" name="gender" id="other" value="other" onChange={onGenderChange} />
                         <label className="btn btn-secondary" htmlFor="other">Other</label>
                     </div>
+                </div>
+                <div className="form-outline mb-4">
+                    <small className='text-danger'>{errorMessage}</small>
                 </div>
                 <div className="text-center pt-1 mb-5 pb-1">
                     <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">

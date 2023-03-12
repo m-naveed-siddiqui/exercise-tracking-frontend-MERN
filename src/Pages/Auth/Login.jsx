@@ -1,40 +1,49 @@
-import { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-// import Layout from '../../Components/Auth/LayoutAuth';
-import { useCookies } from "react-cookie";
+import { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+// import { useCookies } from "react-cookie";
+import axios from 'axios';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const set_email = useRef();
+    const set_password = useRef();
+
     const [errorMessage, setErrorMessage] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    // const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const data = {
-            email,password
-        }
-        // fetch('http://10.241.72.232:3000/login', {
-        fetch('http://127.0.0.1:3000/login', {
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data)
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            const token = data.token;
-            if(token) {
-                setCookie('token',token);
-                window.location.replace("/dashboard");
-            } else {
-                setErrorMessage("Credentials Mismatched");
-            }
-        })
-        .catch((error) => {
-          setErrorMessage(error.message);
-        });
+
+        const email = set_email.current.value;
+        const password = set_password.current.value;
+
+        // const data = { email, password  }
+        // fetch('http://127.0.0.1:3000/login', {
+        //     method:"POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     const token = data.token;
+        //     if(token) {
+        //         // setCookie('token',token);
+        //         window.location.replace("/dashboard");
+        //     } else {
+        //         setErrorMessage("Credentials Mismatched");
+        //     }
+        // })
+        // .catch((error) => {
+        //   setErrorMessage(error.message);
+        // });
+
+        axios.post('http://127.0.0.1:3000/login', {
+            email, password
+        }).then(res => {
+            localStorage.setItem('user', res.data.token);
+            location.reload();
+        }).catch(error => setErrorMessage(error.message));
     }
 
     return (
@@ -45,12 +54,12 @@ export default function Login() {
 
                 <div className="form-outline mb-4">
                     <input type="email" id="email" className="form-control"
-                        placeholder="Please enter your email address" required onChange={(e)=>setEmail(e.target.value)} />
+                        placeholder="Please enter your email address" required ref={set_email} />
                     <label className="form-label" htmlFor="email">Email</label>
                 </div>
                 <div className="form-outline mb-4">
                     <input type="password" id="password" className="form-control"
-                        placeholder="Please enter your password" required onChange={(e)=>setPassword(e.target.value)} />
+                        placeholder="Please enter your password" required ref={set_password} />
                     <label className="form-label" htmlFor="password">Password</label>
                 </div>
                 <div className="form-outline mb-4">

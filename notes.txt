@@ -1,0 +1,7 @@
+MDBootstrap Classes:
+justify-content-center (Horizontal center)
+align-items-center (Vertical center)
+
+Issues:
+1) useeffect: first shows login page, than dashboard
+2) localstorage.getItem() could not be verified (when showing dashboard)

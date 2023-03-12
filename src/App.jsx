@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import './App.css';
 import Register from './Pages/Auth/Register';
 import Login from './Pages/Auth/Login';
@@ -8,15 +9,21 @@ import AddExercise from './Pages/AddExercise';
 import NotFound from './Pages/NotFound';
 import Layout from './Components/Layout';
 import LayoutAuth from './Components/Auth/LayoutAuth';
+import { useEffect, useState } from 'react';
 
 function App() {
-    const login = false;
+    const [isLogin, setIsLogin] = useState(false);
+    useEffect(() => {
+        localStorage.getItem('user') && setIsLogin(true);
+    }, []);
+    
+    const queryClient = new QueryClient();
 
     const Router = createBrowserRouter([
         {
             path: "/",
             element: <Layout />,
-            errorElement: <NotFound login={login}/>,
+            errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Exercises/> },
                 { path: '/exercise/add', element: <AddExercise/> },
@@ -29,7 +36,7 @@ function App() {
         {
             path: "/",
             element: <LayoutAuth />,
-            errorElement: <NotFound login={login}/>,
+            errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Login/> },
                 { path: "/register", element: <Register /> },
@@ -40,7 +47,7 @@ function App() {
     ]);
 
     return (
-        <>
+        <QueryClientProvider client={queryClient}>
             {/* <BrowserRouter>
                 {
                     login ?
@@ -59,12 +66,12 @@ function App() {
                     </Routes>
                 }
             </BrowserRouter> */}
-            <RouterProvider router={login ? Router : RouterGuest} />
+            <RouterProvider router={isLogin ? Router : RouterGuest} />
             
             <Helmet>
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
             </Helmet>
-        </>
+        </QueryClientProvider>
     )
 }
 

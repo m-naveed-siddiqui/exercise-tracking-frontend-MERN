@@ -1,3 +1,0 @@
-MDBootstrap Classes:
-justify-content-center (Horizontal center)
-align-items-center (Vertical center)
