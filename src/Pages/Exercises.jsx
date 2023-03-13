@@ -1,10 +1,11 @@
 import ExerciseCard from "../Components/ExerciseCard";
 import { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
+// import { Cookies } from "react-cookie";
+import axios from "axios";
 
 export default function Exercises() {
-    const [data, setData] = useState('');
-    const cookies = new Cookies()
+    const [exercises, setExercises] = useState([]);
+    // const cookies = new Cookies()
 
     // useEffect( ()=> {
     //     fetch('http://10.241.72.232:3000/getAllExercises',{
@@ -21,6 +22,20 @@ export default function Exercises() {
     //       console.error(error);
     //     });
     // },[])
+
+    const [refresh, setRefresh] = useState(false);
+    
+    useEffect(() => {
+        axios.get('http://127.0.0.1:3000/getAllExercises', {
+            headers: {
+                'Content-Type': 'application/json',
+                "authorization":localStorage.getItem("user")
+            },
+        }).then(res => {
+            setExercises(res.data);
+        }).catch(error => console.log(error.message));
+    }, [refresh]);
+
     return (
         <>
             {/* <label className="welcome-label">Welcome <span>Naveed Siddiqui</span></label> */}
@@ -31,7 +46,9 @@ export default function Exercises() {
             <div className="card-deck text-center">
 
                 <div className="list-group">
-                    <ExerciseCard />
+                    { exercises.map((exercise, index) => {
+                        return <ExerciseCard key={index} id={exercise._id} name={exercise.name} description={exercise.description} type={exercise.type} duration={exercise.duration} date={exercise.date} setRefresh={setRefresh} />
+                    }) }
                 </div>
             </div>
         </>
