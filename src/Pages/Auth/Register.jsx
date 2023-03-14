@@ -46,7 +46,10 @@ export default function Register() {
         }).then(res => {
             localStorage.setItem('user', res.data.token);
             location.reload();
-        }).catch(error => setErrorMessage(error.message));
+        }).catch(error => {
+            // setErrorMessage(error.response.data);
+            console.log(error);
+        });
         
     };
     
