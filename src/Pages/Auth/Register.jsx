@@ -10,7 +10,7 @@ export default function Register() {
     const set_password = useRef();
     const set_dob = useRef();
 
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState([]);
     const [gender, setGender] = useState('');
     const onGenderChange = e => {
         setGender(e.target.value);
@@ -47,8 +47,12 @@ export default function Register() {
             localStorage.setItem('user', res.data.token);
             location.reload();
         }).catch(error => {
-            // setErrorMessage(error.response.data);
-            console.log(error);
+            if (error.response) {
+                setErrorMessage( Object.keys(error.response.data).length ? Object.values(error.response.data) : ["Email already exists"] );
+            } else {
+                setErrorMessage([error.message])
+            }
+            
         });
         
     };
@@ -62,7 +66,7 @@ export default function Register() {
                     <div className="col-6">
                         <div className="form-outline mb-4">
                             <input type="text" id="fname" className="form-control"
-                                placeholder="Your first name" required ref={set_fname} />
+                                placeholder="Your first name" ref={set_fname} />
                             <label className="form-label" htmlFor="fname">First Name</label>
                         </div>
                     </div>
@@ -101,9 +105,11 @@ export default function Register() {
                         <label className="btn btn-secondary" htmlFor="other">Other</label>
                     </div>
                 </div>
-                <div className="form-outline mb-4">
-                    <small className='text-danger'>{errorMessage}</small>
-                </div>
+                
+                    {errorMessage.map((item, key ) => {
+                        return <div className="form-outline"><small className='text-danger' key={key}>{item}</small></div>
+                    })}
+                
                 <div className="text-center pt-1 mb-5 pb-1">
                     <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
                         Sign up now
