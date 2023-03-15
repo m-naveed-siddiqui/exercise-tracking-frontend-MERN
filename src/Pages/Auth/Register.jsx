@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
 // import { useQuery } from 'react-query';
+import { MDBInput, MDBRadio, MDBBtnGroup} from 'mdb-react-ui-kit';
+
 import axios from 'axios';
 
 export default function Register() {
@@ -65,35 +67,50 @@ export default function Register() {
                 <div className="row">
                     <div className="col-6">
                         <div className="form-outline mb-4">
+                        <MDBInput label='First Name' id='form1' type='text' className="form-control" ref={set_fname} />
+{/* 
                             <input type="text" id="fname" className="form-control"
                                 placeholder="Your first name" ref={set_fname} />
-                            <label className="form-label" htmlFor="fname">First Name</label>
+                            <label className="form-label" htmlFor="fname">First Name</label> */}
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="form-outline mb-4">
-                            <input type="text" id="lname" className="form-control"
+                        <MDBInput label='Last Name' id='form1' type='text' className="form-control" ref={set_lName} />
+                            {/* <input type="text" id="lname" className="form-control"
                                 placeholder="Your last name" required ref={set_lName} />
-                            <label className="form-label" htmlFor="lname">Last Name</label>
+                            <label className="form-label" htmlFor="lname">Last Name</label> */}
                         </div>
                     </div>
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="email" id="email" className="form-control"
+                      <MDBInput label='Email' id='form1' type='text' className="form-control" ref={set_email} placeholder="your@email.com"  />
+                    {/* <input type="email" id="email" className="form-control"
                         placeholder="your@email.com" required ref={set_email} />
-                    <label className="form-label" htmlFor="email">Email</label>
+                    <label className="form-label" htmlFor="email">Email</label> */}
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="password" id="password" className="form-control"
+                <MDBInput label='Password' id='form1' type='text' className="form-control" ref={set_password} placeholder="Please create yor password" />
+                    {/* <input type="password" id="password" className="form-control"
                         placeholder="Please create yor password" required ref={set_password} />
-                    <label className="form-label" htmlFor="password">Password</label>
+                    <label className="form-label" htmlFor="password">Password</label> */}
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="date" id="dob" className="form-control" ref={set_dob} />
-                    <label className="form-label" htmlFor="dob">Date of Birth</label>
+                <MDBInput label='Date' id='form1' type='date' className="form-control" ref={set_dob} />
+                    {/* <input type="date" id="dob" className="form-control" ref={set_dob} />
+                    <label className="form-label" htmlFor="dob">Date of Birth</label> */}
                 </div>
-                <div className="form-outline mb-4">
-                    <label className="form-label" htmlFor="">Gender</label>
+
+                <div className="form-outline mb-4" >
+                <label className="form-label" htmlFor="">Gender</label>
+                <div className=" form-control">
+                <MDBBtnGroup className=" form-control align-items-center justify-content-center">
+                        <MDBRadio btn btnColor='secondary' id='btn-radio' name='options' wrapperTag='span' label='MALE' />
+                        <MDBRadio btn btnColor='secondary' id='btn-radio2' name='options'wrapperClass='mx-2' wrapperTag='span'label='FEMALE'defaultChecked/>
+                        <MDBRadio btn btnColor='secondary' id='btn-radio3' name='options' wrapperTag='span' label='OTHER' />
+                  </MDBBtnGroup>
+                  </div>
+                    {/* <label className="form-label" htmlFor="">Gender</label>
                     <div className="btn-group form-control">
                         <input type="radio" className="btn-check" name="gender" id="male" value="male" onChange={onGenderChange} />
                         <label className="btn btn-secondary" htmlFor="male">Male</label>
@@ -103,7 +120,7 @@ export default function Register() {
 
                         <input type="radio" className="btn-check" name="gender" id="other" value="other" onChange={onGenderChange} />
                         <label className="btn btn-secondary" htmlFor="other">Other</label>
-                    </div>
+                    </div> */}
                 </div>
                 
                     {errorMessage.map((item, key ) => {
