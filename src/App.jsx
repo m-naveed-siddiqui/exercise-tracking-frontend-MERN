@@ -5,17 +5,18 @@ import './App.css';
 import Register from './Pages/Auth/Register';
 import Login from './Pages/Auth/Login';
 import Exercises from './Pages/Exercises';
-import AddExercise from './Pages/AddExercise';
 import NotFound from './Pages/NotFound';
 import Layout from './Components/Layout';
 import LayoutAuth from './Components/Auth/LayoutAuth';
 import { useEffect, useState } from 'react';
+import ExerciseForm from './Components/ExerciseForm';
 
 function App() {
-    const [isLogin, setIsLogin] = useState(false);
-    useEffect(() => {
-        localStorage.getItem('user') && setIsLogin(true);
-    }, []);
+    const check = localStorage.getItem('user') ? true : false;
+    const [isLogin, setIsLogin] = useState(check);
+    // useEffect(() => {
+    //     localStorage.getItem('user') && setIsLogin(true);
+    // }, [isLogin]);
     
     const queryClient = new QueryClient();
 
@@ -26,7 +27,8 @@ function App() {
             errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Exercises/> },
-                { path: '/exercise/add', element: <AddExercise/> },
+                { path: '/exercise/add', element: <ExerciseForm/> },
+                { path: '/exercise/update', element: <ExerciseForm/> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
                 { path: '/register', element: <Navigate to="/"/> },
             ]
@@ -42,6 +44,7 @@ function App() {
                 { path: "/register", element: <Register /> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
                 { path: "/exercise/add", element: <Navigate to="/"/> },
+                { path: "/exercise/update", element: <Navigate to="/"/> },
             ]
         },
     ]);
@@ -68,9 +71,9 @@ function App() {
             </BrowserRouter> */}
             <RouterProvider router={isLogin ? Router : RouterGuest} />
             
-            <Helmet>
+            {/* <Helmet>
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-            </Helmet>
+            </Helmet> */}
         </QueryClientProvider>
     )
 }
