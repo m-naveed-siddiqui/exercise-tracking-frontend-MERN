@@ -14,7 +14,7 @@ export default function Layout(Components) {
 
                     <div className="row mb-3">
                         <div className="col-2">
-                            <img src={logo} style={{ 'width': '55px' }} alt="logo" loading="eager" />
+                            <img src={logo} style={{ 'width': '190', 'height': '80px' }} alt="logo" loading="eager" />
                         </div>
                         {/* <div className="col-8">
                             <div className="container">
@@ -51,7 +51,7 @@ export default function Layout(Components) {
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" className="rounded-circle shadow-4 mb-3" style={{ 'width': '150px', 'height': '150px' }}
                                     alt="Avatar" />
                                 <h5 className="mb-2"><strong>Naveed Siddiqui</strong></h5>
-                                <p className="text-muted">Web Developer <span className="badge bg-primary">PRO</span></p>
+                                <p className="text-muted">Web Developer</p>
                                 <div className="profile-detail">
                                     <div className="list-group">
                                         <NavLink to="javascript:;" className="list-group-item active">35 Times Exercise</NavLink>

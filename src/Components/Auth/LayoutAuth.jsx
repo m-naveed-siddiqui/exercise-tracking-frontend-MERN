@@ -15,9 +15,9 @@ export default function LayoutAuth(Components) {
                             <div className="col-lg-6">
                                 <div className="card-body p-md-5 mx-md-4">
 
-                                    <div className="text-center">
-                                        <img src={logo} style={{'width': '127px'}} alt="logo" />
-                                        <h4 className="mt-1 mb-5 pb-1">We motive the world strong</h4>
+                                    <div className="text-center mb-4" >
+                                        <img src={logo} style={{'minWidth': '190px', 'minHeight': '80px'}} alt="logo" />
+                                        {/* <h4 className="mt-1 mb-5 pb-1">We motive the world strong</h4> */}
                                     </div>
 
                                     <Outlet/>
@@ -29,15 +29,16 @@ export default function LayoutAuth(Components) {
                             {/* <div className="col-lg-6 d-flex align-items-center gradient-custom-2"> */}
                             <div className="col-lg-6 d-flex align-items-center"
                                 style={{"background":"url("+bg+")", "backgroundSize":"100%", "backgroundRepeat":"no-repeat", "opacity":"0.8"}} >
+                                
                                 <div className="text-white px-3 py-4 p-md-5 mx-md-4"
                                     style={{"background":"#000", "opacity":"0.9"}} >
-                                    <h4 className="mb-4">We are more than just a company</h4>
-                                    <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                        eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                                    <h4 className="mb-4" style={{'text-align': 'left'}}> Transform your body - Transform your life</h4>
+                                    
+                                    <p className="small mb-0" style={{'text-align': 'justify'}}>Welcome to our fitness tracking website, Transform your fitness journey with our easy-to-use tracker. Set achievable goals, track your progress and take control of your health and fitness. Let's make your fitness goals a reality!</p>
+
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

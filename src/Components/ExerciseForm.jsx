@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useNavigate, redirect, useLocation } from "react-router-dom";
 import { format } from "date-fns";
+
+
 
 export default function ExerciseForm(props) {
     const { state } = useLocation();
+    let navigate = useNavigate();
     // console.log(state);
     const [formData, setFormData] = useState({
         name: state ? state.name : '',
@@ -32,7 +35,8 @@ export default function ExerciseForm(props) {
                 "authorization": localStorage.getItem("user")
             },
         }).then(res => {
-            setSuccessMessage(res.data);
+            //setSuccessMessage(res.data);
+            navigate('/')
         }).catch(error => setErrorMessage(error.message));
     };
     const updateExercise = (e)=>{
@@ -46,7 +50,8 @@ export default function ExerciseForm(props) {
                 "authorization": localStorage.getItem("user")
             },
         }).then(res => {
-            setSuccessMessage(res.data);
+            // setSuccessMessage(res.data);
+            navigate('/')
         }).catch(error => setErrorMessage(error.message));
     }
 
@@ -99,7 +104,7 @@ export default function ExerciseForm(props) {
                 </div>
                 <div className="form-group row">
                     <div className="col-sm-10">
-                        <small className='text-success'>{successMessage}</small>
+                        {/* <small className='text-success'>{successMessage}</small> */}
                         <small className='text-danger'>{errorMessage}</small>
                     </div>
                 </div>
