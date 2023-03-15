@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ExerciseCard from "../Components/ExerciseCard";
 import { useEffect, useState } from "react";
 // import { Cookies } from "react-cookie";
@@ -39,8 +40,13 @@ export default function Exercises() {
     return (
         <>
             {/* <label className="welcome-label">Welcome <span>Naveed Siddiqui</span></label> */}
+            
+            {exercises.length ? <h5 className="mb-3">Track your progress and stay motivated with your exercises!</h5> : <div>
+                    <h5 className="mb-3">Let's get moving - add your first exercise to your list!</h5>
+                    <Link to="/exercise/add" className="btn btn-primary">Add Exercise</Link>
+                </div>}
 
-            <h5 className="mb-3">Here Is Your Exercise Summary</h5>
+            {/* <h5 className="mb-3">Track your progress and stay motivated with your exercises!</h5> */}
             {/* Filter Search add here */}
 
             <div className="card-deck text-center">

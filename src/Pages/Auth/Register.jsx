@@ -50,7 +50,9 @@ export default function Register() {
             location.reload();
         }).catch(error => {
             if (error.response) {
-                setErrorMessage( Object.keys(error.response.data).length ? Object.values(error.response.data) : ["Email already exists"] );
+                //setErrorMessage( Object.keys(error.response.data).length ? Object.values(error.response.data) : ["Email already exists"] );
+                setErrorMessage(Object.values(error.response.data));
+                redirect('/exercises')
             } else {
                 setErrorMessage([error.message])
             }
@@ -62,7 +64,7 @@ export default function Register() {
     return (
         <>
             <form onSubmit={handleRegister}>
-                <p>We warmly welcome you</p>
+                <p className='text-center'>Start your fitness journey now</p>
 
                 <div className="row">
                     <div className="col-6">
