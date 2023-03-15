@@ -50,7 +50,7 @@ export default function Login() {
         
         <>
             <form onSubmit={handleLogin}>
-                <p>Please login to your account</p>
+                <p className='fw-bold'>Please login to your account</p>
 
                 <div className="form-outline mb-4">
                     <input type="email" id="email" className="form-control"
