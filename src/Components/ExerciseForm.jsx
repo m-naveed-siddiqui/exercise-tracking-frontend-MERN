@@ -7,7 +7,7 @@ import { format } from "date-fns";
 
 export default function ExerciseForm(props) {
     const { state } = useLocation();
-    let navigate = useNavigate();
+   
     // console.log(state);
     const [formData, setFormData] = useState({
         name: state ? state.name : '',
@@ -17,6 +17,7 @@ export default function ExerciseForm(props) {
         date: state ? state.date : '',
         id: state ? state.id : ''
     });
+    let navigate = useNavigate();
 
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -57,21 +58,21 @@ export default function ExerciseForm(props) {
 
     return (
         <>
-            <h5> {state ? "Update Exercise" : "Add Exercise"}</h5>
+            <h3> {state ? "Update Exercise" : "Add Exercise"}</h3>
             <form onSubmit={state ? updateExercise : createExercise}>
                 <div className="form-group row">
-                    <label htmlFor="name" className="col-sm-2 col-form-label">Exercise Name</label>
+                    <label htmlFor="name" className="col-sm-2 col-form-label mb-2">Exercise Name</label>
                     <div className="col-sm-10">
                         <input type="text" className="form-control" id="name" value={formData.name} name="name" required onChange={handleChange} />
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mb-3">
                     <label htmlFor="description" className="col-sm-2 col-form-label">Description</label>
                     <div className="col-sm-10">
                         <textarea className="form-control" id="description" value={formData.description} name="description" required onChange={handleChange} ></textarea>
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mb-3 ">
                     <label htmlFor="type" className="col-sm-2 col-form-label">Activity Type</label>
                     <div className="col-sm-10">
                         <select id="type" className="form-control" name="type" value={formData.type} required onChange={handleChange} >
@@ -91,14 +92,14 @@ export default function ExerciseForm(props) {
                         <small id="duration-hint" className="text-muted">mins</small>
                     </div>
                 </div>
-                <div className="form-group row">
+                <div className="form-group row mb-4">
                     <label htmlFor="date" className="col-sm-2 col-form-label">Date</label>
                     <div className="col-sm-10">
                         <input type="date" className="form-control" id="date" name="date" value={ formData.date && format(new Date(formData.date), 'yyyy-MM-dd') } required onChange={handleChange} />
                     </div>
                 </div>
                 <div className="form-group row">
-                    <div className="col-sm-10">
+                    <div className="col-sm-10 ">
                         <button type="submit" className="btn btn-primary">{state ? "Update Exercise" : "Add Exercise"}</button>
                     </div>
                 </div>

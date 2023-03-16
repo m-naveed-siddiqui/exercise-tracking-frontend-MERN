@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 // import { useCookies } from "react-cookie";
 import axios from 'axios';
+import { MDBInput } from 'mdb-react-ui-kit';
 
 export default function Login() {
     const set_email = useRef();
@@ -53,14 +54,16 @@ export default function Login() {
                 <p className='fw-bold'>Please login to your account</p>
 
                 <div className="form-outline mb-4">
-                    <input type="email" id="email" className="form-control"
+                <MDBInput label='Email' id='form1' type='email' className="form-control" ref={set_email} placeholder="your@email.com" required />
+                    {/* <input type="email" id="email" className="form-control"
                         placeholder="Please enter your email address" required ref={set_email} />
-                    <label className="form-label" htmlFor="email">Email</label>
+                    <label className="form-label" htmlFor="email">Email</label> */}
                 </div>
                 <div className="form-outline mb-4">
-                    <input type="password" id="password" className="form-control"
+                <MDBInput label='Password' id='form1' type='password' className="form-control" ref={set_password} placeholder="Please enter your password" />
+                    {/* <input type="password" id="password" className="form-control"
                         placeholder="Please enter your password" required ref={set_password} />
-                    <label className="form-label" htmlFor="password">Password</label>
+                    <label className="form-label" htmlFor="password">Password</label> */}
                 </div>
                 <div className="form-outline mb-4">
                     <small className='text-danger'>{errorMessage}</small>

@@ -86,13 +86,13 @@ export default function Register() {
                     </div>
                 </div>
                 <div className="form-outline mb-4">
-                      <MDBInput label='Email' id='form1' type='text' className="form-control" ref={set_email} placeholder="your@email.com"  />
+                      <MDBInput label='Email' id='form1' type='email' className="form-control" ref={set_email} placeholder="your@email.com"  />
                     {/* <input type="email" id="email" className="form-control"
                         placeholder="your@email.com" required ref={set_email} />
                     <label className="form-label" htmlFor="email">Email</label> */}
                 </div>
                 <div className="form-outline mb-4">
-                <MDBInput label='Password' id='form1' type='text' className="form-control" ref={set_password} placeholder="Please create yor password" />
+                <MDBInput label='Password' id='form1' type='password' className="form-control" ref={set_password} placeholder="Please create your password" />
                     {/* <input type="password" id="password" className="form-control"
                         placeholder="Please create yor password" required ref={set_password} />
                     <label className="form-label" htmlFor="password">Password</label> */}

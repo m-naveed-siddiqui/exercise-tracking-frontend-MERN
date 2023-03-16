@@ -4,7 +4,8 @@ import { Outlet, NavLink } from 'react-router-dom';
 export default function Layout(Components) {
     const handleLogout = () => {
         localStorage.clear('user');
-        location.reload();
+        // location.reload();
+        Components.setIsLogin(false)
     };
 
     return (

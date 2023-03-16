@@ -23,7 +23,7 @@ function App() {
     const Router = createBrowserRouter([
         {
             path: "/",
-            element: <Layout />,
+            element: <Layout setIsLogin={setIsLogin} />,
             errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Exercises/> },
