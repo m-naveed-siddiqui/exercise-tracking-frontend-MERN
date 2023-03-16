@@ -43,8 +43,7 @@ function App() {
                 { path: "/", element: <Login/> },
                 { path: "/register", element: <Register setIsLogin={setIsLogin} /> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
-                { path: "/exercise/add", element: <Navigate to="/"/> },
-                { path: "/exercise/update", element: <Navigate to="/"/> },
+                { path: "/exercise/*", element: <Navigate to="/"/> }
             ]
         },
     ]);
