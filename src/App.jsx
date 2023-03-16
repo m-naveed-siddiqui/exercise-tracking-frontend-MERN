@@ -4,12 +4,14 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import './App.css';
 import Register from './Pages/Auth/Register';
 import Login from './Pages/Auth/Login';
-import Exercises from './Pages/Exercises';
+import Exercises from './Pages/Exercises/List';
 import NotFound from './Pages/NotFound';
 import Layout from './Components/Layout';
 import LayoutAuth from './Components/Auth/LayoutAuth';
 import { useEffect, useState } from 'react';
-import ExerciseForm from './Components/ExerciseForm';
+// import ExerciseForm from './Components/ExerciseForm';
+import CreateExercise from './Pages/Exercises/Create';
+import EditExercise from './Pages/Exercises/Edit';
 
 function App() {
     const check = localStorage.getItem('user') ? true : false;
@@ -27,8 +29,8 @@ function App() {
             errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Exercises/> },
-                { path: '/exercise/add', element: <ExerciseForm/> },
-                { path: '/exercise/update', element: <ExerciseForm/> },
+                { path: '/exercise/add', element: <CreateExercise/> },
+                { path: '/exercise/update/:id', element: <EditExercise/> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
                 { path: '/register', element: <Navigate to="/"/> },
             ]

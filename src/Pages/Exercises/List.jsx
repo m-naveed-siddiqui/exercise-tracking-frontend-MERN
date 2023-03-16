@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ExerciseCard from "../Components/ExerciseCard";
+import ExerciseCard from "../../Components/ExerciseCard";
 import { useEffect, useState } from "react";
 // import { Cookies } from "react-cookie";
 import axios from "axios";
