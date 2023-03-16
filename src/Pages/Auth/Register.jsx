@@ -1,11 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
 // import { useQuery } from 'react-query';
 import { MDBInput, MDBRadio, MDBBtnGroup} from 'mdb-react-ui-kit';
 
 import axios from 'axios';
 
-export default function Register() {
+export default function Register(props) {
     const set_fname = useRef();
     const set_lName = useRef();
     const set_email = useRef();
@@ -17,8 +17,6 @@ export default function Register() {
     const onGenderChange = e => {
         setGender(e.target.value);
     };
-
-    const navigate = useNavigate();
 
     // const { isLoading, error, data, isFetching, refetch } = useQuery("registerUser", () => {
     // });
@@ -49,7 +47,7 @@ export default function Register() {
             firstname, lastname, email, password, dob, gender
         }).then(res => {
             localStorage.setItem('user', res.data.token);
-            navigate('/')
+            props.setIsLogin(true)
         }).catch(error => {
             if (error.response) {
                 //setErrorMessage( Object.keys(error.response.data).length ? Object.values(error.response.data) : ["Email already exists"] );
