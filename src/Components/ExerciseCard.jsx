@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function ExerciseCard(props) {
+    console.log(props)
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate('/exercise/update',{state:props})
+        navigate('/exercise/update/' + props.id)
     }
     const handleDelete = () => {
         if(confirm("Are You sure you want to delete?")) {
