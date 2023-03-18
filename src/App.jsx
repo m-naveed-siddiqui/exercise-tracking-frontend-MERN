@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import { QueryClientProvider, QueryClient } from 'react-query';
 import './App.css';
 import Register from './Pages/Auth/Register';
 import Login from './Pages/Auth/Login';
@@ -18,8 +16,6 @@ function App() {
     //     localStorage.getItem('user') && setIsLogin(true);
     // }, [isLogin]);
     
-    const queryClient = new QueryClient();
-
     const Router = createBrowserRouter([
         {
             path: "/",
@@ -50,7 +46,7 @@ function App() {
     ]);
 
     return (
-        <QueryClientProvider client={queryClient}>
+        <>
             {/* <BrowserRouter>
                 {
                     login ?
@@ -70,11 +66,7 @@ function App() {
                 }
             </BrowserRouter> */}
             <RouterProvider router={isLogin ? Router : RouterGuest} />
-            
-            {/* <Helmet>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-            </Helmet> */}
-        </QueryClientProvider>
+        </>
     )
 }
 

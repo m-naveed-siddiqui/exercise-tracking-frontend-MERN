@@ -48,22 +48,16 @@ export default function Login() {
     }
 
     return (
-        
+
         <>
             <form onSubmit={handleLogin}>
                 <p className='fw-bold'>Please login to your account</p>
 
                 <div className="form-outline mb-4">
-                <MDBInput label='Email' id='form1' type='email' className="form-control" ref={set_email} placeholder="your@email.com" required />
-                    {/* <input type="email" id="email" className="form-control"
-                        placeholder="Please enter your email address" required ref={set_email} />
-                    <label className="form-label" htmlFor="email">Email</label> */}
+                    <MDBInput label='Email' type='email' className="form-control" ref={set_email} placeholder="your@email.com" required />
                 </div>
                 <div className="form-outline mb-4">
-                <MDBInput label='Password' id='form1' type='password' className="form-control" ref={set_password} placeholder="Please enter your password" />
-                    {/* <input type="password" id="password" className="form-control"
-                        placeholder="Please enter your password" required ref={set_password} />
-                    <label className="form-label" htmlFor="password">Password</label> */}
+                    <MDBInput label='Password' type='password' className="form-control" ref={set_password} placeholder="Please enter your password" />
                 </div>
                 <div className="form-outline mb-4">
                     <small className='text-danger'>{errorMessage}</small>
@@ -76,7 +70,7 @@ export default function Login() {
                 </div>
                 <div className="d-flex align-items-center justify-content-center pb-4">
                     <p className="mb-0 me-2">Don't have an account?</p>
-                   <Link className="btn btn-outline-danger" to={'/register'}> Create new</Link>
+                    <Link className="btn btn-outline-danger" to={'/register'}> Create new</Link>
                 </div>
             </form>
         </>
