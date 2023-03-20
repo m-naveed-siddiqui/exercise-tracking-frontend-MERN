@@ -1,7 +1,22 @@
 import logo from '../assets/logo.png';
 import { Outlet, NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export default function Layout(Components) {
+    const [profile, setProfile] = useState([]);
+    useEffect(() => {
+        axios.get('http://127.0.0.1:3000/getUser', {
+            headers: {
+                'Content-Type': 'application/json',
+                "authorization":localStorage.getItem("user")
+            },
+        }).then(res => {
+            setProfile(res.data);
+            // console.log(  profile.exercises.length          )
+        }).catch(error => console.log(error.message));
+    }, []);
+
     const handleLogout = () => {
         localStorage.clear('user');
         // location.reload();
@@ -51,8 +66,8 @@ export default function Layout(Components) {
                             <div className="rightbar">
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" className="rounded-circle shadow-4 mb-3" style={{ 'width': '150px', 'height': '150px' }}
                                     alt="Avatar" />
-                                <h5 className="mb-2"><strong>Naveed Siddiqui</strong></h5>
-                                <p className="text-muted">Web Developer</p>
+                                <h5 className="mb-2"><strong>{profile.firstname+' '+profile.lastname}</strong></h5>
+                                {/* <p className="text-muted">Web Developer</p> */}
                                 <div className="profile-detail">
                                     <div className="list-group">
                                         <NavLink to="javascript:;" className="list-group-item active">35 Times Exercise</NavLink>
