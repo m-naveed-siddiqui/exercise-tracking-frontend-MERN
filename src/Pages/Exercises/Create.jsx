@@ -40,6 +40,6 @@ export default function Create() {
     };
     
   return (
-    <ExerciseForm handleSubmit={handleSubmit} handleChange={handleChange} errorMessage={errorMessage} successMessage={successMessage} formData={formData} state={state} />
+    <ExerciseForm title="Add Exercise" handleSubmit={handleSubmit} handleChange={handleChange} errorMessage={errorMessage} successMessage={successMessage} formData={formData} state={state} />
   )
 }

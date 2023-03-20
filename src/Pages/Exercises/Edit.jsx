@@ -5,21 +5,22 @@ import ExerciseForm from '../../Components/ExerciseForm';
 import { useParams } from 'react-router-dom';
 
 export default function Edit(props) {
-    const { state } = useLocation();
+    // const { state } = useLocation();
     const params = useParams();
+    const [formData, setFormData] = useState([]);
    
-    const [formData, setFormData] = useState({
-        name: state ? state.name : '',
-        description: state ? state.description : '',
-        type: state ? state.type : '',
-        duration: state ? state.duration : '',
-        date: state ? state.date : '',
-        id: state ? state.id : ''
-    });
+    // const [formData, setFormData] = useState({
+    //     name: state ? state.name : '',
+    //     description: state ? state.description : '',
+    //     type: state ? state.type : '',
+    //     duration: state ? state.duration : '',
+    //     date: state ? state.date : '',
+    //     id: state ? state.id : ''
+    // });
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:3000/getExerciseById',
+        axios.post('http://127.0.0.1:3000/getExerciseById',
         {'id':params.id},
         {
             headers: {
@@ -27,7 +28,7 @@ export default function Edit(props) {
                 "authorization":localStorage.getItem("user")
             },
         }).then(res => {
-            console.log(res);
+            setFormData(res.data);
         }).catch(error => console.log(error.message));
     }, []);
 
@@ -41,8 +42,8 @@ export default function Edit(props) {
     
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log('updated : ',formData);
-        console.log(props.id);
+        // console.log('updated : ',formData);
+        // console.log(props.id);
         axios.put('http://127.0.0.1:3000/updateExerciseById',
             formData , {
             headers: {
@@ -56,6 +57,6 @@ export default function Edit(props) {
     }
 
   return (
-    <ExerciseForm handleSubmit={handleSubmit} handleChange={handleChange} errorMessage={errorMessage} successMessage={successMessage} formData={formData} state={state} />
+    <ExerciseForm title="Update Exercise" handleSubmit={handleSubmit} handleChange={handleChange} errorMessage={errorMessage} successMessage={successMessage} formData={formData} />
   )
 }

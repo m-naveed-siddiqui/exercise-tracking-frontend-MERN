@@ -3,7 +3,7 @@ import { format } from "date-fns";
 export default function ExerciseForm(props) {
     return (
         <>
-            <h3> {props.state ? "Update Exercise" : "Add Exercise"}</h3>
+            <h3> {props.title}</h3>
             <form onSubmit={props.handleSubmit}>
                 <div className="form-group row">
                     <label htmlFor="name" className="col-sm-2 col-form-label mb-2">Exercise Name</label>
@@ -45,14 +45,14 @@ export default function ExerciseForm(props) {
                 </div>
                 <div className="form-group row">
                     <div className="col-sm-10 ">
-                        <button type="submit" className="btn btn-primary">{props.state ? "Update Exercise" : "Add Exercise"}</button>
+                        <button type="submit" className="btn btn-primary">{props.title}</button>
                     </div>
                 </div>
                 <div className="form-group row">
                     <div className="col-sm-10">
                         {/* <small className='text-success'>{props.successMessage}</small> */}
                         <small className='text-danger'>{props.errorMessage}</small>
-                    </div>
+                        </div>
                 </div>
             </form>
         </>

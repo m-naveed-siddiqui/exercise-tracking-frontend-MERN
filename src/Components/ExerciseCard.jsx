@@ -19,7 +19,7 @@ export default function ExerciseCard(props) {
                 },
             }).then(res => {
                 console.log(res.data);
-                props.setRefresh(true);
+                props.setRefresh(!props.refresh);
             }).catch(error => console.error(error.message));
         }
     }

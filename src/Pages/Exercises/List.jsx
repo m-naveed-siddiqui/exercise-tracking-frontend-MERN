@@ -53,7 +53,7 @@ export default function Exercises() {
 
                 <div className="list-group">
                     { exercises.map((exercise, index) => {
-                        return <ExerciseCard key={index} id={exercise._id} name={exercise.name} description={exercise.description} type={exercise.type} duration={exercise.duration} date={exercise.date} setRefresh={setRefresh} />
+                        return <ExerciseCard key={index} id={exercise._id} name={exercise.name} description={exercise.description} type={exercise.type} duration={exercise.duration} date={exercise.date} refresh={refresh} setRefresh={setRefresh} />
                     }) }
                 </div>
             </div>
