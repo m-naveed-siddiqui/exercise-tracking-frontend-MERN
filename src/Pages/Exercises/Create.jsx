@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ExerciseForm from '../../Components/ExerciseForm';
 
-export default function Create() {   
+export default function Create(props) {   
     const [formData, setFormData] = useState({});
     const [errorMessage, setErrorMessage] = useState([]);
     
@@ -23,6 +23,7 @@ export default function Create() {
                 "authorization": localStorage.getItem("user")
             },
         }).then(res => {
+            // props.setProfile({...formData, firstname: '85' });
             navigate('/')
         }).catch(error => {
             if (error.response) {

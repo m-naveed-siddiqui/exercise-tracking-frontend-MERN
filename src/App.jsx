@@ -26,7 +26,7 @@ function App() {
             errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Exercises/> },
-                { path: '/exercise/add', element: <CreateExercise/> },
+                { path: '/exercise/add', element: <CreateExercise setProfile={setProfile} /> },
                 { path: '/exercise/update/:id', element: <EditExercise/> },
                 { path: '/profile', element: <Profile setProfile={setProfile}/> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
