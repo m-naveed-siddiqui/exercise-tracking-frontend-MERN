@@ -9,7 +9,7 @@ export default function Exercises() {
     // const cookies = new Cookies()
 
     // useEffect( ()=> {
-    //     fetch('http://10.241.72.232:3000/getAllExercises',{
+    //     fetch(import.meta.env.VITE_API_HOST+'getAllExercises',{
     //         headers:{
     //             "Authorization":cookies.get('token')
     //         }
@@ -27,7 +27,7 @@ export default function Exercises() {
     const [refresh, setRefresh] = useState(false);
     
     useEffect(() => {
-        axios.get('http://127.0.0.1:3000/getAllExercises', {
+        axios.get(import.meta.env.VITE_API_HOST+'getAllExercises', {
             headers: {
                 'Content-Type': 'application/json',
                 "authorization":localStorage.getItem("user")

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { MDBInput } from 'mdb-react-ui-kit';
 
-export default function Login() {
+export default function Login(props) {
     const set_email = useRef();
     const set_password = useRef();
 
@@ -18,7 +18,7 @@ export default function Login() {
         const password = set_password.current.value;
 
         // const data = { email, password  }
-        // fetch('http://127.0.0.1:3000/login', {
+        // fetch(import.meta.env.VITE_API_HOST+'login', {
         //     method:"POST",
         //     headers: {
         //         "Content-Type": "application/json",
@@ -39,12 +39,20 @@ export default function Login() {
         //   setErrorMessage(error.message);
         // });
 
-        axios.post('http://127.0.0.1:3000/login', {
+        axios.post(import.meta.env.VITE_API_HOST+'login', {
             email, password
         }).then(res => {
             localStorage.setItem('user', res.data.token);
-            location.reload();
-        }).catch(error => setErrorMessage(error.message));
+            props.setIsLogin(true);
+        }).catch(error => {
+            if (error.response) {
+                //setErrorMessage( Object.keys(error.response.data).length ? Object.values(error.response.data) : ["Email already exists"] );
+                setErrorMessage(Object.values(error.response.data));
+            } else {
+                setErrorMessage([error.message])
+            }
+
+        });
     }
 
     return (
@@ -57,7 +65,7 @@ export default function Login() {
                     <MDBInput label='Email' type='email' className="form-control" ref={set_email} placeholder="your@email.com" required />
                 </div>
                 <div className="form-outline mb-4">
-                    <MDBInput label='Password' type='password' className="form-control" ref={set_password} placeholder="Please enter your password" />
+                    <MDBInput label='Password' type='password' className="form-control" ref={set_password} placeholder="Please enter your password" required />
                 </div>
                 <div className="form-outline mb-4">
                     <small className='text-danger'>{errorMessage}</small>
@@ -66,7 +74,7 @@ export default function Login() {
                     <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">
                         Log in
                     </button>
-                    <Link className="text-muted" to={'/register'}>Forgot password?</Link>
+                    {/* <Link className="text-muted" to="#">Forgot password?</Link> */}
                 </div>
                 <div className="d-flex align-items-center justify-content-center pb-4">
                     <p className="mb-0 me-2">Don't have an account?</p>

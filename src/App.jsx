@@ -7,13 +7,14 @@ import NotFound from './Pages/NotFound';
 import Layout from './Components/Layout';
 import LayoutAuth from './Components/Auth/LayoutAuth';
 import { useEffect, useState } from 'react';
-// import ExerciseForm from './Components/ExerciseForm';
 import CreateExercise from './Pages/Exercises/Create';
 import EditExercise from './Pages/Exercises/Edit';
+import Profile from './Pages/User/Profile';
 
 function App() {
     const check = localStorage.getItem('user') ? true : false;
     const [isLogin, setIsLogin] = useState(check);
+    const [profile, setProfile] = useState([]);
     // useEffect(() => {
     //     localStorage.getItem('user') && setIsLogin(true);
     // }, [isLogin]);
@@ -21,12 +22,13 @@ function App() {
     const Router = createBrowserRouter([
         {
             path: "/",
-            element: <Layout setIsLogin={setIsLogin} />,
+            element: <Layout setIsLogin={setIsLogin} profile={profile} setProfile={setProfile} />,
             errorElement: <NotFound login={isLogin}/>,
             children: [
                 { path: "/", element: <Exercises/> },
                 { path: '/exercise/add', element: <CreateExercise/> },
                 { path: '/exercise/update/:id', element: <EditExercise/> },
+                { path: '/profile', element: <Profile setProfile={setProfile}/> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
                 { path: '/register', element: <Navigate to="/"/> },
             ]
@@ -38,10 +40,11 @@ function App() {
             element: <LayoutAuth />,
             errorElement: <NotFound login={isLogin}/>,
             children: [
-                { path: "/", element: <Login/> },
+                { path: "/", element: <Login setIsLogin={setIsLogin} /> },
                 { path: "/register", element: <Register setIsLogin={setIsLogin} /> },
                 // rest of existing (but not authorized) routes. [Could not be 404]
-                { path: "/exercise/*", element: <Navigate to="/"/> }
+                { path: "/exercise/*", element: <Navigate to="/"/> },
+                { path: "/profile", element: <Navigate to="/"/> }
             ]
         },
     ]);

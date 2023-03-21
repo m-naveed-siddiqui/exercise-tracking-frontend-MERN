@@ -4,16 +4,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export default function Layout(Components) {
-    const [profile, setProfile] = useState([]);
+    // const [profile, setProfile] = useState([]);
     useEffect(() => {
-        axios.get('http://127.0.0.1:3000/getUser', {
+        axios.get(import.meta.env.VITE_API_HOST+'getUser', {
             headers: {
                 'Content-Type': 'application/json',
                 "authorization":localStorage.getItem("user")
             },
         }).then(res => {
-            setProfile(res.data);
-            // console.log(  profile.exercises.length          )
+            Components.setProfile(res.data);
         }).catch(error => console.log(error.message));
     }, []);
 
@@ -46,7 +45,7 @@ export default function Layout(Components) {
                                 <div className="list-group mt-3">
                                     <NavLink to="/" className="list-group-item list-group-item-action">My Exercises</NavLink>
                                     <NavLink to="/exercise/add" className="list-group-item list-group-item-action">Add Exercise</NavLink>
-                                    <NavLink to="javascript:;" className="list-group-item list-group-item-action">Profile</NavLink>
+                                    <NavLink to="/profile" className="list-group-item list-group-item-action">Profile</NavLink>
                                     <NavLink to="javascript:;" className="list-group-item list-group-item-action" onClick={handleLogout}>Logout</NavLink>
                                 </div>
                             </div>
@@ -66,18 +65,18 @@ export default function Layout(Components) {
                             <div className="rightbar">
                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" className="rounded-circle shadow-4 mb-3" style={{ 'width': '150px', 'height': '150px' }}
                                     alt="Avatar" />
-                                <h5 className="mb-2"><strong>{profile.firstname+' '+profile.lastname}</strong></h5>
-                                {/* <p className="text-muted">Web Developer</p> */}
-                                <div className="profile-detail">
+                                <h5 className="mb-2"><strong>{Components.profile.firstname+' '+Components.profile.lastname}</strong></h5>
+                                <p className="text-muted">{Components.profile.exercises && Components.profile.exercises.length} Exercises</p>
+                                {/* <div className="profile-detail">
                                     <div className="list-group">
-                                        <NavLink to="javascript:;" className="list-group-item active">35 Times Exercise</NavLink>
+                                        <NavLink to="javascript:;" className="list-group-item active">{Components.profile.exercises && Components.profile.exercises.length} Times Exercise</NavLink>
                                         <NavLink to="javascript:;" className="list-group-item">Run: 15 (Times)</NavLink>
                                         <NavLink to="javascript:;" className="list-group-item">Bicycle Ride: 18 (Times)</NavLink>
                                         <NavLink to="javascript:;" className="list-group-item">Swim: 2 (Times)</NavLink>
                                         <NavLink to="javascript:;" className="list-group-item">Walk: 0 (Times)</NavLink>
                                         <NavLink to="javascript:;" className="list-group-item">Hike: 0 (Times)</NavLink>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

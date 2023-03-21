@@ -4,21 +4,20 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function ExerciseCard(props) {
-    console.log(props)
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/exercise/update/' + props.id)
     }
     const handleDelete = () => {
         if(confirm("Are You sure you want to delete?")) {
-            axios.post('http://127.0.0.1:3000/deleteExerciseById',
+            axios.post(import.meta.env.VITE_API_HOST+'deleteExerciseById',
                 {"id":props.id} , {
                 headers: {
                     'Content-Type': 'application/json',
                     "authorization": localStorage.getItem("user")
                 },
             }).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 props.setRefresh(!props.refresh);
             }).catch(error => console.error(error.message));
         }
