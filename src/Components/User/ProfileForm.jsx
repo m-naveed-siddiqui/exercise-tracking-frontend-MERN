@@ -16,25 +16,25 @@ export default function ProfileForm(props) {
                 <div className="form-group row">
                     <label htmlFor="name" className="col-sm-2 col-form-label mb-2">First Name</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" name="firstname" value={props.formData.firstname} onChange={props.handleChange} />
+                        <input type="text" className="form-control" name="firstname" value={props.formData.firstname} onChange={props.handleChange} required />
                     </div>
                 </div>
                 <div className="form-group row mb-3">
                     <label htmlFor="description" className="col-sm-2 col-form-label">Last Name</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" name="lastname" value={props.formData.lastname} onChange={props.handleChange} />
+                        <input type="text" className="form-control" name="lastname" value={props.formData.lastname} onChange={props.handleChange} required />
                     </div>
                 </div>
                 <div className="form-group row mb-3">
                     <label htmlFor="description" className="col-sm-2 col-form-label">Email</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" name="email" value={props.formData.email} onChange={props.handleChange} />
+                        <input type="email" className="form-control" name="email" value={props.formData.email} onChange={props.handleChange} required />
                     </div>
                 </div>
                 <div className="form-group row mb-3">
                     <label htmlFor="description" className="col-sm-2 col-form-label">Password</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" name="password" value={props.formData.password} onChange={props.handleChange} />
+                        <input type="password" className="form-control" name="password" value={props.formData.password} onChange={props.handleChange} required />
                     </div>
                 </div>
                 <div className="form-group row mb-3">

@@ -65,10 +65,10 @@ export default function Layout(Components) {
                             <div className="rightbar">
                                 {/* <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" className="rounded-circle shadow-4 mb-3" style={{ 'width': '150px', 'height': '150px' }}
                                     alt="Avatar" /> */}
-                                <img src={"https://ui-avatars.com/api/?background=random&name="+Components.profile.firstname} className="rounded-circle shadow-4 mb-3" style={{ 'width': '150px', 'height': '150px' }}
+                                <img src={ "https://ui-avatars.com/api/?background=random&name="+Components.profile.firstname+'+'+Components.profile.lastname } className="rounded-circle shadow-4 mb-3" style={{ 'width': '150px', 'height': '150px' }}
                                     alt="Avatar" />
                                 <h5 className="mb-2"><strong>{Components.profile.firstname+' '+Components.profile.lastname}</strong></h5>
-                                <p className="text-muted">{Components.profile.exercises && Components.profile.exercises.length} Exercises</p>
+                                {/* <p className="text-muted">{Components.profile.exercises && Components.profile.exercises.length} Exercises</p> */}
                                 {/* <div className="profile-detail">
                                     <div className="list-group">
                                         <NavLink to="javascript:;" className="list-group-item active">{Components.profile.exercises && Components.profile.exercises.length} Times Exercise</NavLink>

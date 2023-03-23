@@ -8,7 +8,7 @@ export default function ExerciseForm(props) {
                 <div className="form-group row">
                     <label htmlFor="name" className="col-sm-2 col-form-label mb-2">Exercise Name</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" id="name" value={props.formData.name} name="name" onChange={props.handleChange} />
+                        <input type="text" className="form-control" id="name" value={props.formData.name} name="name" onChange={props.handleChange} required />
                     </div>
                 </div>
                 <div className="form-group row mb-3">
@@ -20,7 +20,7 @@ export default function ExerciseForm(props) {
                 <div className="form-group row mb-3 ">
                     <label htmlFor="type" className="col-sm-2 col-form-label">Activity Type</label>
                     <div className="col-sm-10">
-                        <select id="type" className="form-control" name="type" value={props.formData.type} onChange={props.handleChange} >
+                        <select id="type" className="form-control" name="type" value={props.formData.type} onChange={props.handleChange} required >
                             <option value="">Choose...</option>
                             <option value="run">Run</option>
                             <option value="bicycle_ride">Bicycle Ride</option>
@@ -33,7 +33,7 @@ export default function ExerciseForm(props) {
                 <div className="form-group row">
                     <label htmlFor="duration" className="col-sm-2 col-form-label">Duration</label>
                     <div className="col-sm-10">
-                        <input type="number" className="form-control" id="duration" name="duration" value={props.formData.duration} aria-describedby="duration-hint" onChange={props.handleChange} />
+                        <input type="number" className="form-control" id="duration" name="duration" required value={props.formData.duration} aria-describedby="duration-hint" onChange={props.handleChange} />
                         <small id="duration-hint" className="text-muted">mins</small>
                     </div>
                 </div>
